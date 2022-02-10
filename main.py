@@ -5,14 +5,19 @@ import requests
 import urllib
 import json
 import youtube_dl
+import datetime
+from datetime import date, timedelta
 from keep_alive import keep_alive
 from googleapi import google
 from googlesearch import search
+
 client=discord.Client()
 my_secret = os.environ['token']
 API_KEY = os.environ['token2']
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 sad_words=["sad","depressed","dukh","dard","pain","angry","annoyed","pissed","peeda"]
+today=date.today()
+temp=today.replace(day=1) - timedelta(days=1)
 
 @client.event
 async def on_message(message):
@@ -36,6 +41,16 @@ async def on_message(message):
     await message.channel.send('https://cdn.discordapp.com/attachments/547833581456850954/941230860710051882/20220209_183037.jpg')
   if 'surya' in msg:
     await message.channel.send('https://cdn.discordapp.com/attachments/780430546874138640/941140499207708682/PXL_20210606_052638243.MP.jpg')
+  if 'kartik' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/498129314533867521/941249295103967272/Kartik_Anand_picture.jpg')
+  if 'aryan' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/770700178604425247/941250039320285215/C6B1A97E-A4A2-4D64-B44C-9F6AC19F72EA.jpg')
+  if 'manas' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/935614841668894820/941254383604236288/236376357_438696470614610_7176962335888262977_n.jpg')
+  if 'virat' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/830389609800269834/941256430160338964/54f63115-df31-42ee-9ab3-7724081126d4.png')
+  if 'aadit' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/861501982254039070/941259852284592128/Snapchat-717566903.jpg')
   if 'what is' in msg:
     spl_word = 'what is'
     res = 'what is ' + msg.partition(spl_word)[2]

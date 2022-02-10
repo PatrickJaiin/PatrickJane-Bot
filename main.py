@@ -24,6 +24,13 @@ async def on_message(message):
   msg=message.content
   if message.content.startswith('!test'):
     await message.channel.send('WE HAVE LIFTOFF')
+  if message.content.startswith('!nasa'):
+    nasalink="https://api.nasa.gov/planetary/apod?api_key={}".format(nasa_key)
+    responsenasa1 = requests.get(nasalink)
+    datanasa1 = responsenasa1.json()
+    await message.channel.send(datanasa1['url'])
+    await message.channel.send(datanasa1['copyright'])
+    await message.channel.send(datanasa1['explanation'])
   if message.content.startswith('!photo'):
     today=date.today()
     temp=today.replace(day=1) - timedelta(days=1) 

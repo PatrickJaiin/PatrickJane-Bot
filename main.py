@@ -32,6 +32,10 @@ async def on_message(message):
     await message.channel.send('https://cdn.discordapp.com/attachments/699548119448420374/941093328240390235/IMG_20220202_162307_648.jpg')
   if 'shiv' in msg:
     await message.channel.send('https://cdn.discordapp.com/attachments/834075135056805950/941096742944927764/IMG_20220128_025326_637.jpg')
+  if 'aravind' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/547833581456850954/941230860710051882/20220209_183037.jpg')
+  if 'surya' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/780430546874138640/941140499207708682/PXL_20210606_052638243.MP.jpg')
   if 'what is' in msg:
     spl_word = 'what is'
     res = 'what is ' + msg.partition(spl_word)[2]
@@ -52,7 +56,7 @@ async def on_message(message):
     pressure = damn['pressure']
     report = data['weather']
     await message.channel.send(f"{CITY:-^30}")
-    await message.channel.send(f"Temperature: {round(temperature-273.15,2)}")
+    await message.channel.send(f"Temperature: {round(temperature-273.15)}")
     await message.channel.send(f"Humidity: {humidity}")
     await message.channel.send(f"Pressure: {pressure}")
     await message.channel.send(f"Weather Report: {report[0]['description']}")

@@ -6,6 +6,7 @@ import urllib
 import json
 import youtube_dl
 import datetime
+import plotly.graph_objs as go
 from datetime import date, timedelta
 from keep_alive import keep_alive
 from googleapi import google
@@ -17,7 +18,6 @@ API_KEY = os.environ['token2']
 nasa_key=os.environ['nasa']
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 sad_words=["sad","depressed","dukh","dard","pain","angry","annoyed","pissed","peeda"]
-
 
 @client.event
 async def on_message(message):
@@ -77,6 +77,10 @@ async def on_message(message):
     await message.channel.send('https://cdn.discordapp.com/attachments/861501982254039070/941259852284592128/Snapchat-717566903.jpg')
   if 'arindam' in msg:
     await message.channel.send('https://cdn.discordapp.com/attachments/690881018386841681/941283167149625364/20220210-0001.jpg')
+  if 'kshitiz' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/846000599140925470/941315850265329675/IMG_20190721_130929_097.jpg')
+  if 'shellss' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/940971808750972928/941321343301980190/IMG_20220210_184447.jpg')
   if 'what is' in msg:
     spl_word = 'what is'
     res = 'what is ' + msg.partition(spl_word)[2]
@@ -102,10 +106,9 @@ async def on_message(message):
     await message.channel.send(f"Pressure: {pressure}")
     await message.channel.send(f"Weather Report: {report[0]['description']}")
     
-
 @client.event
 async def on_ready():
   print("Logged in as {0.user}.format(client)")
-
+  
 keep_alive()
 client.run(my_secret)

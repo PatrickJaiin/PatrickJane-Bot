@@ -10,20 +10,37 @@ from datetime import date, timedelta
 from keep_alive import keep_alive
 from googleapi import google
 from googlesearch import search
-
+from geopy.geocoders import Nominatim
 client=discord.Client()
 my_secret = os.environ['token']
 API_KEY = os.environ['token2']
+nasa_key=os.environ['nasa']
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 sad_words=["sad","depressed","dukh","dard","pain","angry","annoyed","pissed","peeda"]
-today=date.today()
-temp=today.replace(day=1) - timedelta(days=1)
+
 
 @client.event
 async def on_message(message):
   msg=message.content
   if message.content.startswith('!test'):
     await message.channel.send('WE HAVE LIFTOFF')
+  if message.content.startswith('!photo'):
+    today=date.today()
+    temp=today.replace(day=1) - timedelta(days=1) 
+    loc = Nominatim(user_agent="GetLoc")
+    word="!photo"
+    city=msg.partition(word)[2]
+    print(city)
+    getLoc = loc.geocode(city)
+    print(getLoc.address)
+    lat=getLoc.latitude
+    long=getLoc.longitude
+    link="https://api.nasa.gov/planetary/earth/assets?lon={}&lat={}&date=2021-01-10&&dim=0.1&api_key={}".format(long,lat,nasa_key)
+    responsenasa = requests.get(link)
+    datanasa = responsenasa.json()
+    x = datanasa["url"]
+    await message.channel.send(x)
+    
   if any(word in msg for word in sad_words):
     data = requests.get('https://meme-api.herokuapp.com/gimme')
     json_data=json.loads(data.text)
@@ -51,6 +68,8 @@ async def on_message(message):
     await message.channel.send('https://cdn.discordapp.com/attachments/830389609800269834/941256430160338964/54f63115-df31-42ee-9ab3-7724081126d4.png')
   if 'aadit' in msg:
     await message.channel.send('https://cdn.discordapp.com/attachments/861501982254039070/941259852284592128/Snapchat-717566903.jpg')
+  if 'arindam' in msg:
+    await message.channel.send('https://cdn.discordapp.com/attachments/690881018386841681/941283167149625364/20220210-0001.jpg')
   if 'what is' in msg:
     spl_word = 'what is'
     res = 'what is ' + msg.partition(spl_word)[2]
